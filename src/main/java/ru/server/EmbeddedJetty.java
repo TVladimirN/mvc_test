@@ -1,4 +1,5 @@
 package ru.server;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -17,7 +18,7 @@ public class EmbeddedJetty {
     private static final Logger logger = LoggerFactory.getLogger(EmbeddedJetty.class);
     private static final int DEFAULT_PORT = 5050;
     private static final String CONTEXT_PATH = "/";
-    private static final String CONFIG_LOCATION = "ru/server/configs";
+    private static final String CONFIG_LOCATION = "ru.server.configs";
     private static final String MAPPING_URL = "/*";
     private static final String DEFAULT_PROFILE = "dev";
 
@@ -51,7 +52,8 @@ public class EmbeddedJetty {
         contextHandler.setContextPath(CONTEXT_PATH);
         contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), MAPPING_URL);
         contextHandler.addEventListener(new ContextLoaderListener(context));
-        contextHandler.setResourceBase("webapp"/*new ClassPathResource("webapp").getURI().toString()*/);
+        contextHandler.setResourceBase(new ClassPathResource("webapp").getURI().toString());
+
         return contextHandler;
     }
 
@@ -59,6 +61,7 @@ public class EmbeddedJetty {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation(CONFIG_LOCATION);
         context.getEnvironment().setDefaultProfiles(DEFAULT_PROFILE);
+
         return context;
     }
 
