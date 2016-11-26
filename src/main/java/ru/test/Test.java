@@ -7,4 +7,8 @@ public class Test {
     public Test() {
 
     }
+
+    public String getRandom() {
+        return "test return random";
+    }
 }

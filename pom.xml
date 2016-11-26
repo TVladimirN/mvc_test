@@ -12,7 +12,7 @@
     <name>mvc</name>
 
     <properties>
-        <spring.version>3.2.5.RELEASE</spring.version>
+        <spring.version>4.1.3.RELEASE</spring.version>
         <slf4j.version>1.7.5</slf4j.version>
         <jetty.version>9.0.6.v20130930</jetty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,11 +37,19 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.freemarker</groupId>-->
+        <!--<artifactId>freemarker</artifactId>-->
+        <!--<version>2.3.21</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>&lt;!&ndash; Necesario para FreeMarkerConfigurer &ndash;&gt;-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-context-support</artifactId>-->
+        <!--<version>${spring.version}</version>-->
+        <!--</dependency>-->
+
 
         <!-- Logging -->
         <dependency>
@@ -58,7 +66,17 @@
         <!-- Jetty embedded -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jsp</artifactId>
             <version>${jetty.version}</version>
         </dependency>
 
@@ -100,46 +118,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
-
-            <!--&lt;!&ndash; Shade &ndash;&gt;-->
-
-            <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-shade-plugin</artifactId>-->
-            <!--<version>2.1</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<phase>package</phase>-->
-            <!--<goals>-->
-            <!--<goal>shade</goal>-->
-            <!--</goals>-->
-            <!--<configuration>-->
-            <!--<createDependencyReducedPom>false</createDependencyReducedPom>-->
-            <!--<transformers>-->
-            <!--<transformer-->
-            <!--implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-            <!--<mainClass>ru.server.EmbeddedJetty</mainClass>-->
-            <!--</transformer>-->
-            <!--</transformers>-->
-            <!--<filters>-->
-            <!--<filter>-->
-            <!--<artifact>*:*</artifact>-->
-            <!--<excludes>-->
-            <!--<exclude>META-INF/*.SF</exclude>-->
-            <!--<exclude>META-INF/*.DSA</exclude>-->
-            <!--<exclude>META-INF/*.RSA</exclude>-->
-            <!--</excludes>-->
-            <!--</filter>-->
-            <!--</filters>-->
-            <!--</configuration>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
-
+            <!--Jetty plugin-->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -152,7 +135,6 @@
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>

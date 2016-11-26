@@ -1,5 +1,6 @@
 package ru.server;
 
+import org.apache.jasper.servlet.JspServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -19,7 +20,7 @@ public class EmbeddedJetty {
     private static final int DEFAULT_PORT = 5050;
     private static final String CONTEXT_PATH = "/";
     private static final String CONFIG_LOCATION = "ru.server.configs";
-    private static final String MAPPING_URL = "/*";
+    private static final String MAPPING_URL = "/";
     private static final String DEFAULT_PROFILE = "dev";
 
     public static void main(String[] args) throws Exception {
@@ -47,13 +48,16 @@ public class EmbeddedJetty {
     }
 
     private static ServletContextHandler getServletContextHandler(WebApplicationContext context) throws IOException {
-        ServletContextHandler contextHandler = new ServletContextHandler();
+        ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         contextHandler.setErrorHandler(null);
         contextHandler.setContextPath(CONTEXT_PATH);
         contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), MAPPING_URL);
         contextHandler.addEventListener(new ContextLoaderListener(context));
         contextHandler.setResourceBase(new ClassPathResource("webapp").getURI().toString());
 
+        // JSP
+        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader()); // Necesario para cargar JspServlet
+        contextHandler.addServlet(JspServlet.class, "*.jsp");
         return contextHandler;
     }
 

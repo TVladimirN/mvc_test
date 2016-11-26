@@ -12,13 +12,13 @@ import org.springframework.core.io.Resource;
 public class PropertySourcesConfig {
 
     private static final Resource[] DEV_PROPERTIES = new ClassPathResource[]{
-            new ClassPathResource("example-dev.properties"),
+            new ClassPathResource("/properties/example-dev.properties"),
     };
     private static final Resource[] TEST_PROPERTIES = new ClassPathResource[]{
-            new ClassPathResource("example-test.properties"),
+            new ClassPathResource("/properties/example-test.properties"),
     };
     private static final Resource[] PROD_PROPERTIES = new ClassPathResource[]{
-            new ClassPathResource("example-prod.properties"),
+            new ClassPathResource("/properties/example-prod.properties"),
     };
 
     @Profile("dev")
