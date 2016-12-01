@@ -38,19 +38,6 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>org.freemarker</groupId>-->
-        <!--<artifactId>freemarker</artifactId>-->
-        <!--<version>2.3.21</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>&lt;!&ndash; Necesario para FreeMarkerConfigurer &ndash;&gt;-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-context-support</artifactId>-->
-        <!--<version>${spring.version}</version>-->
-        <!--</dependency>-->
-
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -91,8 +78,27 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <!-- Cucumber -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+        <!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.0.1</version>
         </dependency>
     </dependencies>
 
