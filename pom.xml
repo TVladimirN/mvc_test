@@ -17,6 +17,9 @@
         <jetty.version>9.0.6.v20130930</jetty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <cucumber.version>1.2.2</cucumber.version>
+        <selenium.version>3.0.1</selenium.version>
+        <webdriver.chrome>src/main/test/resources/drivers/chromedriver.exe</webdriver.chrome>
     </properties>
 
     <dependencies>
@@ -37,19 +40,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.freemarker</groupId>-->
-        <!--<artifactId>freemarker</artifactId>-->
-        <!--<version>2.3.21</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>&lt;!&ndash; Necesario para FreeMarkerConfigurer &ndash;&gt;-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-context-support</artifactId>-->
-        <!--<version>${spring.version}</version>-->
-        <!--</dependency>-->
-
 
         <!-- Logging -->
         <dependency>
@@ -79,6 +69,11 @@
             <artifactId>jetty-jsp</artifactId>
             <version>${jetty.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
 
         <!-- jstl -->
         <dependency>
@@ -93,6 +88,31 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+        <!-- Cucumber -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium.version}</version>
         </dependency>
     </dependencies>
 
@@ -133,6 +153,16 @@
                         <host>localhost</host>
                     </httpConnector>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
+                </configuration>
+            </plugin>
+            <!-- webDriverPlugin -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
